@@ -124,6 +124,10 @@ dat <- url()
 ---
 ## Exercises
 
+<<<<<<< HEAD
 [exercises-02.R](http://www.simonqueenborough.com/R/code/exercises-02.R)
+=======
+[exercises-02.R]("http://www.simonqueenborough.com/R/exercises/exercises-02.R")
+>>>>>>> fd5d985ac4c95cc73413bba563661003ca32f460
 
 
