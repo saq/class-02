@@ -124,6 +124,6 @@ dat <- url()
 ---
 ## Exercises
 
-[exercises-02.R]("http://www.simonqueenborough.com/R/exercises/exercises-02.R")
+[exercises-02.R](http://www.simonqueenborough.com/R/code/exercises-02.R)
 
 
