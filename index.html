@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Intro to R for Biologists</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Intro to R for Biologists">
+  <meta name="author" content="Simon Queenborough">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+    <link rel="stylesheet" href = "assets/css/ribbons.css">
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+    <!-- END LOGO SLIDE -->
+    
+
+    <!-- TITLE SLIDE -->
+    <!-- Should I move this to a Local Layout File? -->
+    <slide class="title-slide segue nobackground">
+      <hgroup class="auto-fadein">
+        <h1>Intro to R for Biologists</h1>
+        <h2>Class 02 - getting data in to R</h2>
+        <p>Simon Queenborough<br/>Evolution, Ecology &amp; Organismal Biology</p>
+      </hgroup>
+          </slide>
+
+    <!-- SLIDES -->
+      <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Entering Data</h2>
+  </hgroup>
+  <article>
+    <ol>
+<li>Entering data by hand</li>
+<li>Entering data with <code>c()</code></li>
+<li>Combining variables: <code>c()</code>, <code>cbind()</code>, <code>rbind()</code></li>
+<li>Functions <code>vector()</code>, <code>matrix()</code>, <code>list()</code>, <code>data.frame()</code></li>
+<li>But better to enter it outside of R</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Entering data by hand</h2>
+  </hgroup>
+  <article>
+    
+<div style='float:left;width:48%;' class='centered'>
+  <figure><img src = 'assets/img/dat-sp.png' height='300px'></figure>
+
+
+</div>
+<div style='float:right;width:48%;'>
+  <figure><img src = 'assets/img/sparrow.png' height='300px'></figure>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Types of data</h2>
+  </hgroup>
+  <article>
+    <figure><img src = 'assets/img/data-types.png' height='600px'></figure>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Importing Data</h2>
+  </hgroup>
+  <article>
+    <p>MUCH easier to import data from other programmes than enter them again by hand into R</p>
+
+<p>Importing data is the most difficult thing in R (at least in the beginning...).</p>
+
+<h1>How to import data:</h1>
+
+<ol>
+<li>enter the data in a spreadsheet (Excel, Gnumeric, OpenOffice Calc)</li>
+<li>export the data as tab-delimited text file</li>
+<li>close the spreadsheet</li>
+<li><code>setwd()</code> to working directory</li>
+</ol>
+
+<pre><code>setwd(&quot;C:\\R_Quito\\data\\&quot;) # or
+setwd(&quot;C:/R_Quito/data/&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Importing Data</h2>
+  </hgroup>
+  <article>
+    <ol>
+<li>import the data into R with <code>read.table()</code>, <code>read.cvs()</code> or similar:
+
+<ul>
+<li>other functions can import data directly from Excel etc. NOT RECOMMENDED.</li>
+</ul></li>
+</ol>
+
+<pre><code>dat.sparrows &lt;- read.table(file = &quot;sparrow.txt&quot;, header = TRUE)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Importing data: details</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li>Enter data in spreadsheet (e.g. gnumeric, OpenOffice Calc, Excel).</li>
+<li>&#39;NA&#39; for missing data</li>
+<li>First row = names of variables</li>
+<li>First column = unit of sampling</li>
+<li>Names without spaces, #, etc.</li>
+<li>No # or &#39; in the file (comment sign in R)</li>
+<li>copy and paste into text editor</li>
+<li>Save as foo.txt file</li>
+<li>Copy and paste the file address</li>
+<li>[WIN] Change the \ to: \ or / </li>
+<li>[WIN] Include /My Documents/ as is </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>, or .  ?</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li>Excel uses . or , to separate decimals, depending on location</li>
+<li>If the file was made in a computer with , 
+ You must include the argument: <code>dec= “,”</code> in <code>read.table()</code></li>
+</ul>
+
+<pre><code>dat.sparrows &lt;- read.table(file = “sparrows.txt”, header = TRUE)
+dat.sparrows &lt;- read.table(file = “sparrows.txt”, header = TRUE, dec = “,”)
+dat.sparrows &lt;-   read.csv(file = “sparrows.csv”, header = TRUE)
+</code></pre>
+
+<ul>
+<li>Very important to check that the data imported correctly!</li>
+</ul>
+
+<pre><code>str(dat.sparrows)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Obtaining data remotely</h2>
+  </hgroup>
+  <article>
+    <h3><code>read.table()</code></h3>
+
+<pre><code>dat &lt;- read.table(file = &quot;http://www.simonqueenborough.com/R/data/sparrows.txt&quot;)
+</code></pre>
+
+<h3>HTML tables in webpages</h3>
+
+<pre><code>library(XML)
+dat &lt;- readHTMLTable()
+</code></pre>
+
+<h3><code>url()</code></h3>
+
+<pre><code>dat &lt;- url()
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Exercises</h2>
+  </hgroup>
+  <article>
+    <p><a href="%22http://www.simonqueenborough.com/R/exercises/exercises-02.R%22">exercises-02.R</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+
+  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+<!-- Grab CDN jQuery, fall back to local if offline -->
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+<script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery-1.7.min.js"><\/script>')</script>
+<!-- Load Javascripts for Widgets -->
+<!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+</html>
